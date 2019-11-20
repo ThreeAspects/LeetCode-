@@ -1,0 +1,17 @@
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 0) return 0;
+        if(nums.length == 1) return nums[0];
+        return Math.max(func(Arrays.copyOfRange(nums,0,nums.length-1)),func(Arrays.copyOfRange(nums,1,nums.length)));
+    }
+    public int func(int[] nums){
+        int[] dp=new int[nums.length];
+        int cur=0,pre=0,tmp;
+        for(int i:nums){
+            tmp=cur;
+            cur=Math.max(cur,pre+i);
+            pre=tmp;
+        }
+        return cur;
+    }
+}

@@ -1,0 +1,18 @@
+class Solution {
+    public int videoStitching(int[][] clips, int T) {
+        Arrays.sort(clips,(o1,o2)->(o1[0]-o2[0]));
+        int begin=0,end=0,count=1,i=0;
+        while(end<T&&i<clips.length){
+            if(clips[i][0]>begin&&clips[i][1]>end){
+                if(clips[i][0]>end){
+                    break;
+                }
+                count++;
+                begin=end;
+            }
+            end=Math.max(end,clips[i][1]);
+            i++;
+        }
+        return end<T? -1:count;
+    }
+}
